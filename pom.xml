@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>micro-job-samples</module>
+        <module>micro-job-autoconfigure</module>
+        <module>micro-job-dependencies</module>
+        <module>micro-job-starters</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.github.hengboy.job</groupId>
+    <artifactId>spring-boot-micro-job</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spring-boot-micro-job</name>
+    <description>
+        spring-boot-micro-job 是一款分布式任务执行框架
+        核心组件：
+        1. 调度中心
+        2. 注册中心
+        3. 任务生产者
+        4. 任务消费者
+    </description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <!--公共版本依赖-->
+        <micro.job.dependencies.version>0.0.1-SNAPSHOT</micro.job.dependencies.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+</project>
