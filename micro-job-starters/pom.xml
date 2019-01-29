@@ -21,6 +21,16 @@
         <module>spring-boot-starter-registry-memory</module>
         <module>spring-boot-starter</module>
     </modules>
-
-
+    <!--version dependencies-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>micro-job-dependencies</artifactId>
+                <version>${micro.job.dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

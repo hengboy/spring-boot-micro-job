@@ -8,8 +8,55 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <description>
+        自动化配置依赖
+        1. 提供所有自动化属性注入定义
+    </description>
     <artifactId>micro-job-autoconfigure</artifactId>
-
-
+    <dependencies>
+        <!--自动生成配置信息-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!--spring context-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <!--quartz scheduler-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+        </dependency>
+        <!--micro job schedule-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-schedule</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--micro job schedule-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-provider</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+    <!--version dependencies-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>micro-job-dependencies</artifactId>
+                <version>${micro.job.dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

@@ -11,5 +11,16 @@
 
     <artifactId>spring-boot-starter-provider</artifactId>
 
-
+    <dependencies>
+        <!--micro job starter-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!--micro job schedule-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-provider</artifactId>
+        </dependency>
+    </dependencies>
 </project>

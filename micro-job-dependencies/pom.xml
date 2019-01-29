@@ -11,6 +11,7 @@
     <artifactId>micro-job-dependencies</artifactId>
 
     <properties>
+        <micro.job.starter.version>0.0.1-SNAPSHOT</micro.job.starter.version>
         <micro.job.consumer.version>0.0.1-SNAPSHOT</micro.job.consumer.version>
         <micro.job.provider.version>0.0.1-SNAPSHOT</micro.job.provider.version>
         <micro.job.schedule.version>0.0.1-SNAPSHOT</micro.job.schedule.version>
@@ -21,10 +22,19 @@
         <quartz.schedule.version>2.3.0</quartz.schedule.version>
         <spring.context.version>5.1.4.RELEASE</spring.context.version>
         <micro.job.autoconfigure.version>0.0.1-SNAPSHOT</micro.job.autoconfigure.version>
+        <lombok.version>1.18.4</lombok.version>
+        <micro.schedule.version>1.0-SNAPSHOT</micro.schedule.version>
+        <micro.provider.version>1.0-SNAPSHOT</micro.provider.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--starter-->
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${micro.job.starter.version}</version>
+            </dependency>
             <!--任务消费者默认版本依赖-->
             <dependency>
                 <groupId>com.github.hengboy.job</groupId>
@@ -84,6 +94,25 @@
                 <groupId>com.github.hengboy.job</groupId>
                 <artifactId>micro-job-autoconfigure</artifactId>
                 <version>${micro.job.autoconfigure.version}</version>
+            </dependency>
+            <!--lombok version-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <!--micro schedule-->
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>micro-job-schedule</artifactId>
+                <version>${micro.schedule.version}</version>
+            </dependency>
+            <!--micro job schedule-->
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>micro-job-provider</artifactId>
+                <version>${micro.provider.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

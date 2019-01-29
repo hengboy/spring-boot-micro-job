@@ -1,0 +1,26 @@
+hengboy:
+  job:
+    schedule:
+      listen-port: 7001
+spring:
+  #数据源配置信息
+  datasource:
+    druid:
+      url: jdbc:mysql://119.27.164.151:3306/fission?characterEncoding=utf8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: developer
+      password: sanmi@developer2018
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      validation-query: select 1 from dual
+      min-evictable-idle-time-millis: 300000
+      time-between-eviction-runs-millis: 60000
+      min-idle: 1
+      max-pool-prepared-statement-per-connection-size: 20
+      #打开PSCache，并且指定每个连接PSCache的大小
+      pool-prepared-statements: true
+      #最大连接等待超时时间
+      max-wait: 60000
+      initial-size: 1
+      max-active: 100

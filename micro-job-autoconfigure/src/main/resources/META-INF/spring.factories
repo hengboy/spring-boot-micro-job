@@ -1,0 +1,4 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.github.hengboy.job.autoconfigure.schedule.MicroJobScheduleAutoConfiguration,\
+  com.github.hengboy.job.autoconfigure.provider.MicroJobProviderAutoConfiguration
