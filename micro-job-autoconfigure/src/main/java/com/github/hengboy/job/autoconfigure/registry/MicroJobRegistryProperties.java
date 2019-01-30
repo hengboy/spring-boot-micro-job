@@ -20,6 +20,8 @@ import com.github.hengboy.job.core.enums.MicroJobRegistryAway;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import static com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties.REGISTRY_PROPERTIES_PREFIX;
+
 /**
  * 服务注册中心配置
  *
@@ -32,8 +34,29 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * GitHub：https://github.com/hengyuboy
  */
 @Data
-@ConfigurationProperties(prefix = "hengboy.job.registry")
+@ConfigurationProperties(prefix = REGISTRY_PROPERTIES_PREFIX)
 public class MicroJobRegistryProperties {
+    /**
+     * 注册中心配置前缀
+     */
+    public final static String REGISTRY_PROPERTIES_PREFIX = "hengboy.job.registry";
+    /**
+     * 任务注册中心部署的ip地址
+     */
+    private String ipAddress = "127.0.0.1";
+    /**
+     * 注册中心监听端口号
+     * 默认端口号为：9000
+     */
+    private int listenPort = 9000;
+    /**
+     * 心跳同步超时时间，单位：毫秒
+     */
+    private int requestTimeOutMillisSecond = 5000;
+    /**
+     * 心跳同步执行间隔时间，单位：秒
+     */
+    private int heartDelaySeconds = 5;
     /**
      * 注册中心注册方式
      * 默认内存方式

@@ -17,8 +17,8 @@
 package com.github.hengboy.job.autoconfigure.provider;
 
 import com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties;
+import com.github.hengboy.job.provider.MicroJobProvider;
 import com.github.hengboy.job.provider.MicroJobProviderFactoryBean;
-import com.github.hengboy.job.provider.service.JobServiceProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -71,6 +71,8 @@ public class MicroJobProviderAutoConfiguration {
         factoryBean.setRegistryAway(microJobRegistryProperties.getAway());
         factoryBean.setScheduleLbStrategy(microJobProviderProperties.getScheduleLbStrategy());
         factoryBean.setSyncRegistryScheduleIntervalSeconds(microJobProviderProperties.getSyncRegistryScheduleIntervalSeconds());
+        factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
+        factoryBean.setRegistryPort(microJobRegistryProperties.getListenPort());
         return factoryBean;
     }
 
@@ -82,8 +84,7 @@ public class MicroJobProviderAutoConfiguration {
      * @return
      */
     @Bean
-    JobServiceProvider jobServiceProvider() {
-        JobServiceProvider jobServiceProvider = new JobServiceProvider();
-        return jobServiceProvider;
+    MicroJobProvider microJobProvider() {
+        return new MicroJobProvider();
     }
 }

@@ -11,5 +11,16 @@
 
     <artifactId>spring-boot-starter-registry-memory</artifactId>
 
-
+    <dependencies>
+        <!--micro job starter-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!--内存方式任务注册中心-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-registry-memory</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -46,6 +46,17 @@
             <artifactId>micro-job-provider</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--micro job memory registry-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-registry</artifactId>
+        </dependency>
+        <!--micro job memory registry-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-registry-memory</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
     <!--version dependencies-->
     <dependencyManagement>

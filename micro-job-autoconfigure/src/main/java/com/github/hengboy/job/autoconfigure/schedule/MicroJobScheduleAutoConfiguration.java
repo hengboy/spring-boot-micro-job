@@ -16,6 +16,7 @@
 
 package com.github.hengboy.job.autoconfigure.schedule;
 
+import com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties;
 import com.github.hengboy.job.schedule.MicroJobScheduleFactoryBean;
 import com.github.hengboy.job.schedule.store.JobStore;
 import com.github.hengboy.job.schedule.store.customizer.JobStoreCustomizer;
@@ -42,7 +43,7 @@ import javax.sql.DataSource;
  * GitHub：https://github.com/hengyuboy
  */
 @Configuration
-@EnableConfigurationProperties(MicroJobScheduleProperties.class)
+@EnableConfigurationProperties({MicroJobScheduleProperties.class, MicroJobRegistryProperties.class})
 @ConditionalOnClass({Scheduler.class, MicroJobScheduleFactoryBean.class})
 @ConditionalOnBean(DataSource.class)
 public class MicroJobScheduleAutoConfiguration {
@@ -50,6 +51,13 @@ public class MicroJobScheduleAutoConfiguration {
      * 调度器属性配置
      */
     private MicroJobScheduleProperties microJobScheduleProperties;
+    /**
+     * 任务注册中心属性配置
+     */
+    private MicroJobRegistryProperties microJobRegistryProperties;
+    /**
+     * 自定义jobStore配置
+     */
     private final ObjectProvider<JobStoreCustomizer> customizers;
 
     /**
@@ -58,8 +66,9 @@ public class MicroJobScheduleAutoConfiguration {
      * @param microJobScheduleProperties 调度配置文件内容
      * @param customizers                自定义jobStore配置实现
      */
-    public MicroJobScheduleAutoConfiguration(MicroJobScheduleProperties microJobScheduleProperties, ObjectProvider<JobStoreCustomizer> customizers) {
+    public MicroJobScheduleAutoConfiguration(MicroJobScheduleProperties microJobScheduleProperties, MicroJobRegistryProperties microJobRegistryProperties, ObjectProvider<JobStoreCustomizer> customizers) {
         this.microJobScheduleProperties = microJobScheduleProperties;
+        this.microJobRegistryProperties = microJobRegistryProperties;
         this.customizers = customizers;
     }
 
@@ -90,6 +99,10 @@ public class MicroJobScheduleAutoConfiguration {
         MicroJobScheduleFactoryBean factoryBean = new MicroJobScheduleFactoryBean();
         factoryBean.setListenPort(microJobScheduleProperties.getListenPort());
         factoryBean.setRequestTimeOutMillisSecond(microJobScheduleProperties.getRequestTimeOutMilliSecond());
+        factoryBean.setHeartDelaySeconds(microJobScheduleProperties.getHeartDelaySeconds());
+        factoryBean.setLoadBalanceWeight(microJobScheduleProperties.getLoadBalanceWeight());
+        factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
+        factoryBean.setRegistryListenPort(microJobRegistryProperties.getListenPort());
         return factoryBean;
     }
 

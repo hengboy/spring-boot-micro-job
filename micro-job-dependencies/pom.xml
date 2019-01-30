@@ -25,6 +25,8 @@
         <lombok.version>1.18.4</lombok.version>
         <micro.schedule.version>1.0-SNAPSHOT</micro.schedule.version>
         <micro.provider.version>1.0-SNAPSHOT</micro.provider.version>
+        <micro.registry.version>1.0-SNAPSHOT</micro.registry.version>
+        <micro.registry.memory.version>1.0-SNAPSHOT</micro.registry.memory.version>
     </properties>
 
     <dependencyManagement>
@@ -113,6 +115,18 @@
                 <groupId>com.github.hengboy.job</groupId>
                 <artifactId>micro-job-provider</artifactId>
                 <version>${micro.provider.version}</version>
+            </dependency>
+            <!--micro job registry-->
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>micro-job-registry</artifactId>
+                <version>${micro.registry.version}</version>
+            </dependency>
+            <!--micro job memory registry-->
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>micro-job-registry-memory</artifactId>
+                <version>${micro.registry.memory.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

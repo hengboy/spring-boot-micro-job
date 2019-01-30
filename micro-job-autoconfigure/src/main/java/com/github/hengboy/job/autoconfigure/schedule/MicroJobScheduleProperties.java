@@ -55,6 +55,14 @@ public class MicroJobScheduleProperties {
      */
     private int maxRetryTimes = 2;
     /**
+     * 调度器负载的权重
+     */
+    private int loadBalanceWeight = 1;
+    /**
+     * 心跳同步执行间隔时间，单位：秒
+     */
+    private int heartDelaySeconds = 5;
+    /**
      * quartz Config Properties
      */
     private MicroJobScheduleProperties.QuartzConfigProperties quartz;
