@@ -103,6 +103,7 @@ public class MicroJobScheduleAutoConfiguration {
         factoryBean.setLoadBalanceWeight(microJobScheduleProperties.getLoadBalanceWeight());
         factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
         factoryBean.setRegistryListenPort(microJobRegistryProperties.getListenPort());
+        factoryBean.setMaxRetryTimes(microJobScheduleProperties.getMaxRetryTimes());
         return factoryBean;
     }
 

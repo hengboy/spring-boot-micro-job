@@ -40,7 +40,7 @@ import static com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProp
  * GitHub：https://github.com/hengyuboy
  */
 @Configuration
-@ConditionalOnClass(MemoryRegistryStore.class)
+@ConditionalOnClass({MemoryRegistryStore.class, RegistryStoreFactoryBean.class})
 @EnableConfigurationProperties(MicroJobRegistryProperties.class)
 @ConditionalOnProperty(prefix = REGISTRY_PROPERTIES_PREFIX, name = "away", havingValue = "MEMORY")
 public class MicroJobMemoryRegistryStoreAutoConfiguration {

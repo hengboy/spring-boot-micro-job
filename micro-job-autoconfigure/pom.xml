@@ -28,11 +28,19 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <optional>true</optional>
         </dependency>
         <!--quartz scheduler-->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
+            <optional>true</optional>
         </dependency>
         <!--micro job schedule-->
         <dependency>
@@ -46,10 +54,17 @@
             <artifactId>micro-job-provider</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--micro job schedule-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-consumer</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--micro job memory registry-->
         <dependency>
             <groupId>com.github.hengboy.job</groupId>
             <artifactId>micro-job-registry</artifactId>
+            <optional>true</optional>
         </dependency>
         <!--micro job memory registry-->
         <dependency>
