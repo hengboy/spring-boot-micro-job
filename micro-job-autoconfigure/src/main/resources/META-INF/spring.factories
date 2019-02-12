@@ -3,5 +3,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.github.hengboy.job.autoconfigure.schedule.MicroJobScheduleAutoConfiguration,\
   com.github.hengboy.job.autoconfigure.schedule.MicroJobQuartzAutoConfiguration,\
   com.github.hengboy.job.autoconfigure.provider.MicroJobProviderAutoConfiguration,\
-  com.github.hengboy.job.autoconfigure.registry.MicroJobMemoryRegistryStoreAutoConfiguration,\
+  com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryAutoConfiguration,\
+  com.github.hengboy.job.autoconfigure.registry.MicroJobMemoryRegistryAutoConfiguration,\
   com.github.hengboy.job.autoconfigure.consumer.MicroJobConsumerAutoConfiguration

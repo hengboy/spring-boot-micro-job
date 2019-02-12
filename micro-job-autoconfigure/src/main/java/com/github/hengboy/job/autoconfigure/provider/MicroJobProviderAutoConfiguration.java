@@ -17,9 +17,11 @@
 package com.github.hengboy.job.autoconfigure.provider;
 
 import com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties;
+import com.github.hengboy.job.core.http.MicroJobRestTemplate;
 import com.github.hengboy.job.provider.MicroJobProvider;
 import com.github.hengboy.job.provider.MicroJobProviderFactoryBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -86,5 +88,17 @@ public class MicroJobProviderAutoConfiguration {
     @Bean
     MicroJobProvider microJobProvider() {
         return new MicroJobProvider();
+    }
+
+    /**
+     * 实例化restTemplate
+     * 用于消费者、提供者、调度器、注册中心ws请求交互
+     *
+     * @return
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public MicroJobRestTemplate restTemplate() {
+        return new MicroJobRestTemplate();
     }
 }

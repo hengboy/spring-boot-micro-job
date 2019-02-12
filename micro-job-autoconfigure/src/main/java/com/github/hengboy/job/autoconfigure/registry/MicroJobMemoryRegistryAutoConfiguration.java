@@ -16,9 +16,10 @@
 
 package com.github.hengboy.job.autoconfigure.registry;
 
-import com.github.hengboy.job.registry.store.RegistryStore;
-import com.github.hengboy.job.registry.store.RegistryStoreFactoryBean;
-import com.github.hengboy.job.registry.support.memory.MemoryRegistryStore;
+import com.github.hengboy.job.registry.http.InstanceRegistry;
+import com.github.hengboy.job.registry.store.RegistryFactoryBean;
+import com.github.hengboy.job.registry.support.memory.MemoryInstanceRegistry;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -40,16 +41,17 @@ import static com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProp
  * GitHub：https://github.com/hengyuboy
  */
 @Configuration
-@ConditionalOnClass({MemoryRegistryStore.class, RegistryStoreFactoryBean.class})
+@ConditionalOnClass({MemoryInstanceRegistry.class, RegistryFactoryBean.class})
 @EnableConfigurationProperties(MicroJobRegistryProperties.class)
 @ConditionalOnProperty(prefix = REGISTRY_PROPERTIES_PREFIX, name = "away", havingValue = "MEMORY")
-public class MicroJobMemoryRegistryStoreAutoConfiguration {
+@AutoConfigureAfter(MicroJobRegistryAutoConfiguration.class)
+public class MicroJobMemoryRegistryAutoConfiguration {
     /**
      * 注册中心属性配置
      */
     private MicroJobRegistryProperties microJobRegistryProperties;
 
-    public MicroJobMemoryRegistryStoreAutoConfiguration(MicroJobRegistryProperties microJobRegistryProperties) {
+    public MicroJobMemoryRegistryAutoConfiguration(MicroJobRegistryProperties microJobRegistryProperties) {
         this.microJobRegistryProperties = microJobRegistryProperties;
     }
 
@@ -60,22 +62,19 @@ public class MicroJobMemoryRegistryStoreAutoConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean
-    public RegistryStoreFactoryBean registryStoreFactoryBean() {
-        RegistryStoreFactoryBean factoryBean = new RegistryStoreFactoryBean();
-        factoryBean.setListenPort(microJobRegistryProperties.getListenPort());
-        factoryBean.setRequestTimeOutMillisSecond(microJobRegistryProperties.getRequestTimeOutMillisSecond());
+    public RegistryFactoryBean RegistryFactoryBean() {
+        RegistryFactoryBean factoryBean = new RegistryFactoryBean();
         return factoryBean;
     }
 
     /**
-     * 任务注册中心数据源配置
-     * - 内存方式数据源配置
+     * 实例注册中心
      *
      * @return
      */
     @Bean
     @ConditionalOnMissingBean
-    public RegistryStore registryStore() {
-        return new MemoryRegistryStore();
+    public InstanceRegistry instanceRegistry() {
+        return new MemoryInstanceRegistry();
     }
 }

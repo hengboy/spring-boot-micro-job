@@ -17,6 +17,7 @@
 package com.github.hengboy.job.autoconfigure.schedule;
 
 import com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties;
+import com.github.hengboy.job.core.http.MicroJobRestTemplate;
 import com.github.hengboy.job.schedule.MicroJobScheduleFactoryBean;
 import com.github.hengboy.job.schedule.store.JobStore;
 import com.github.hengboy.job.schedule.store.customizer.JobStoreCustomizer;
@@ -25,6 +26,7 @@ import org.quartz.Scheduler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -97,8 +99,6 @@ public class MicroJobScheduleAutoConfiguration {
     @Bean
     MicroJobScheduleFactoryBean microJobScheduleFactoryBean() {
         MicroJobScheduleFactoryBean factoryBean = new MicroJobScheduleFactoryBean();
-        factoryBean.setListenPort(microJobScheduleProperties.getListenPort());
-        factoryBean.setRequestTimeOutMillisSecond(microJobScheduleProperties.getRequestTimeOutMilliSecond());
         factoryBean.setHeartDelaySeconds(microJobScheduleProperties.getHeartDelaySeconds());
         factoryBean.setLoadBalanceWeight(microJobScheduleProperties.getLoadBalanceWeight());
         factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
@@ -115,5 +115,16 @@ public class MicroJobScheduleAutoConfiguration {
      */
     private void customize(JobStore jobStore) {
         this.customizers.orderedStream().forEach((customizer) -> customizer.customize(jobStore));
+    }
+    /**
+     * 实例化restTemplate
+     * 用于消费者、提供者、调度器、注册中心ws请求交互
+     *
+     * @return
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public MicroJobRestTemplate restTemplate() {
+        return new MicroJobRestTemplate();
     }
 }

@@ -30,6 +30,12 @@
             <artifactId>spring-context-support</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--spring web-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--spring-->
         <dependency>
             <groupId>org.springframework</groupId>

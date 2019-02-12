@@ -18,6 +18,7 @@ package com.github.hengboy.job.autoconfigure.consumer;
 
 import com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties;
 import com.github.hengboy.job.consumer.MicroJobConsumerFactoryBean;
+import com.github.hengboy.job.core.http.MicroJobRestTemplate;
 import com.github.hengboy.job.core.tools.JobSpringContext;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
@@ -94,7 +95,6 @@ public class MicroJobConsumerAutoConfiguration {
         MicroJobConsumerFactoryBean factoryBean = new MicroJobConsumerFactoryBean();
         factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
         factoryBean.setRegistryPort(microJobRegistryProperties.getListenPort());
-        factoryBean.setRequestTimeOutMilliSecond(microJobConsumerProperties.getRequestTimeOutMilliSecond());
         factoryBean.setHeartDelaySeconds(microJobConsumerProperties.getHeartDelaySeconds());
         factoryBean.setListenPort(microJobConsumerProperties.getListenPort());
         factoryBean.setLoadBalanceWeight(microJobConsumerProperties.getLoadBalanceWeight());
@@ -106,5 +106,16 @@ public class MicroJobConsumerAutoConfiguration {
         }
         factoryBean.setJobScanBasePackage(scanMicroJobPackage);
         return factoryBean;
+    }
+    /**
+     * 实例化restTemplate
+     * 用于消费者、提供者、调度器、注册中心ws请求交互
+     *
+     * @return
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public MicroJobRestTemplate restTemplate() {
+        return new MicroJobRestTemplate();
     }
 }
