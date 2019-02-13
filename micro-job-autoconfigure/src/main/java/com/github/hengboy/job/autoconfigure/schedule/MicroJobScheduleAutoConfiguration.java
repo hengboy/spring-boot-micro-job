@@ -18,7 +18,7 @@ package com.github.hengboy.job.autoconfigure.schedule;
 
 import com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties;
 import com.github.hengboy.job.core.http.MicroJobRestTemplate;
-import com.github.hengboy.job.schedule.MicroJobScheduleFactoryBean;
+import com.github.hengboy.job.schedule.ScheduleFactoryBean;
 import com.github.hengboy.job.schedule.store.JobStore;
 import com.github.hengboy.job.schedule.store.customizer.JobStoreCustomizer;
 import com.github.hengboy.job.schedule.store.jdbc.JdbcJobStore;
@@ -27,6 +27,7 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,8 +46,8 @@ import javax.sql.DataSource;
  * GitHub：https://github.com/hengyuboy
  */
 @Configuration
-@EnableConfigurationProperties({MicroJobScheduleProperties.class, MicroJobRegistryProperties.class})
-@ConditionalOnClass({Scheduler.class, MicroJobScheduleFactoryBean.class})
+@EnableConfigurationProperties({MicroJobScheduleProperties.class, MicroJobRegistryProperties.class, ServerProperties.class})
+@ConditionalOnClass({Scheduler.class, ScheduleFactoryBean.class})
 @ConditionalOnBean(DataSource.class)
 public class MicroJobScheduleAutoConfiguration {
     /**
@@ -58,6 +59,10 @@ public class MicroJobScheduleAutoConfiguration {
      */
     private MicroJobRegistryProperties microJobRegistryProperties;
     /**
+     * server属性配置
+     */
+    private ServerProperties serverProperties;
+    /**
      * 自定义jobStore配置
      */
     private final ObjectProvider<JobStoreCustomizer> customizers;
@@ -68,9 +73,10 @@ public class MicroJobScheduleAutoConfiguration {
      * @param microJobScheduleProperties 调度配置文件内容
      * @param customizers                自定义jobStore配置实现
      */
-    public MicroJobScheduleAutoConfiguration(MicroJobScheduleProperties microJobScheduleProperties, MicroJobRegistryProperties microJobRegistryProperties, ObjectProvider<JobStoreCustomizer> customizers) {
+    public MicroJobScheduleAutoConfiguration(MicroJobScheduleProperties microJobScheduleProperties, MicroJobRegistryProperties microJobRegistryProperties, ServerProperties serverProperties, ObjectProvider<JobStoreCustomizer> customizers) {
         this.microJobScheduleProperties = microJobScheduleProperties;
         this.microJobRegistryProperties = microJobRegistryProperties;
+        this.serverProperties = serverProperties;
         this.customizers = customizers;
     }
 
@@ -85,7 +91,6 @@ public class MicroJobScheduleAutoConfiguration {
     JobStore jobStore(DataSource dataSource) {
         JdbcJobStore jdbcJobStore = new JdbcJobStore();
         jdbcJobStore.setDataSource(dataSource);
-
         // 自定义配置
         this.customize(jdbcJobStore);
         return jdbcJobStore;
@@ -97,13 +102,21 @@ public class MicroJobScheduleAutoConfiguration {
      * @return
      */
     @Bean
-    MicroJobScheduleFactoryBean microJobScheduleFactoryBean() {
-        MicroJobScheduleFactoryBean factoryBean = new MicroJobScheduleFactoryBean();
+    ScheduleFactoryBean microJobScheduleFactoryBean() {
+        ScheduleFactoryBean factoryBean = new ScheduleFactoryBean();
         factoryBean.setHeartDelaySeconds(microJobScheduleProperties.getHeartDelaySeconds());
+
+        // 负载均衡权重
         factoryBean.setLoadBalanceWeight(microJobScheduleProperties.getLoadBalanceWeight());
-        factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
-        factoryBean.setRegistryListenPort(microJobRegistryProperties.getListenPort());
         factoryBean.setMaxRetryTimes(microJobScheduleProperties.getMaxRetryTimes());
+
+        // 设置任务注册中心配置信息
+        factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
+        factoryBean.setRegistryPort(microJobRegistryProperties.getPort());
+
+        // 设置端口号
+        factoryBean.setPort(serverProperties.getPort());
+
         return factoryBean;
     }
 
@@ -116,6 +129,7 @@ public class MicroJobScheduleAutoConfiguration {
     private void customize(JobStore jobStore) {
         this.customizers.orderedStream().forEach((customizer) -> customizer.customize(jobStore));
     }
+
     /**
      * 实例化restTemplate
      * 用于消费者、提供者、调度器、注册中心ws请求交互

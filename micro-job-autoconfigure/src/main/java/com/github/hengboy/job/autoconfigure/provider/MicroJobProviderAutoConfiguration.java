@@ -74,7 +74,7 @@ public class MicroJobProviderAutoConfiguration {
         factoryBean.setScheduleLbStrategy(microJobProviderProperties.getScheduleLbStrategy());
         factoryBean.setSyncRegistryScheduleIntervalSeconds(microJobProviderProperties.getSyncRegistryScheduleIntervalSeconds());
         factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
-        factoryBean.setRegistryPort(microJobRegistryProperties.getListenPort());
+        factoryBean.setRegistryPort(microJobRegistryProperties.getPort());
         return factoryBean;
     }
 

@@ -18,7 +18,6 @@ package com.github.hengboy.job.sample;
 
 import com.github.hengboy.job.autoconfigure.schedule.MicroJobScheduleProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -34,9 +33,4 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
     @Autowired
     private MicroJobScheduleProperties microJobScheduleProperties;
-
-    @RequestMapping(value = "/port")
-    public int index() {
-        return microJobScheduleProperties.getListenPort();
-    }
 }

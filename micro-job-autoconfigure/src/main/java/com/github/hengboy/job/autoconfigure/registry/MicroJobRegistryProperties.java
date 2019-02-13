@@ -48,11 +48,7 @@ public class MicroJobRegistryProperties {
      * 注册中心监听端口号
      * 默认端口号为：9000
      */
-    private int listenPort = 9000;
-    /**
-     * 心跳同步超时时间，单位：毫秒
-     */
-    private int requestTimeOutMillisSecond = 5000;
+    private int port = 9000;
     /**
      * 心跳同步执行间隔时间，单位：秒
      */

@@ -16,7 +16,7 @@
 
 package com.github.hengboy.job.autoconfigure.schedule;
 
-import com.github.hengboy.job.schedule.MicroJobScheduleFactoryBean;
+import com.github.hengboy.job.schedule.ScheduleFactoryBean;
 import org.quartz.Calendar;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -55,7 +55,7 @@ import java.util.Properties;
  * GitHub：https://github.com/hengyuboy
  */
 @Configuration
-@ConditionalOnClass({Scheduler.class, SchedulerFactoryBean.class, PlatformTransactionManagerCustomizer.class, MicroJobScheduleFactoryBean.class})
+@ConditionalOnClass({Scheduler.class, SchedulerFactoryBean.class, PlatformTransactionManagerCustomizer.class, ScheduleFactoryBean.class})
 @EnableConfigurationProperties({QuartzProperties.class, MicroJobScheduleProperties.class})
 @AutoConfigureAfter({DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 public class MicroJobQuartzAutoConfiguration {

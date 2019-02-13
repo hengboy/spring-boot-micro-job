@@ -17,13 +17,14 @@
 package com.github.hengboy.job.autoconfigure.consumer;
 
 import com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties;
-import com.github.hengboy.job.consumer.MicroJobConsumerFactoryBean;
+import com.github.hengboy.job.consumer.ConsumerFactoryBean;
 import com.github.hengboy.job.core.http.MicroJobRestTemplate;
 import com.github.hengboy.job.core.tools.JobSpringContext;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,8 +42,8 @@ import org.springframework.util.StringUtils;
  * GitHub：https://github.com/hengyuboy
  */
 @Configuration
-@ConditionalOnClass(MicroJobConsumerFactoryBean.class)
-@EnableConfigurationProperties({MicroJobConsumerProperties.class, MicroJobRegistryProperties.class})
+@ConditionalOnClass(ConsumerFactoryBean.class)
+@EnableConfigurationProperties({MicroJobConsumerProperties.class, MicroJobRegistryProperties.class, ServerProperties.class})
 public class MicroJobConsumerAutoConfiguration {
     /**
      * 任务消费者属性配置
@@ -52,6 +53,10 @@ public class MicroJobConsumerAutoConfiguration {
      * 任务注册中心属性配置
      */
     private MicroJobRegistryProperties microJobRegistryProperties;
+    /**
+     * 服务相关配置
+     */
+    private ServerProperties serverProperties;
     /**
      * 注入spring bean factory
      * 用于获取springboot默认的package
@@ -64,9 +69,10 @@ public class MicroJobConsumerAutoConfiguration {
      * @param microJobConsumerProperties 任务消费者属性配置
      * @param microJobRegistryProperties 任务注册中心属性配置
      */
-    public MicroJobConsumerAutoConfiguration(MicroJobConsumerProperties microJobConsumerProperties, MicroJobRegistryProperties microJobRegistryProperties, BeanFactory beanFactory) {
+    public MicroJobConsumerAutoConfiguration(MicroJobConsumerProperties microJobConsumerProperties, MicroJobRegistryProperties microJobRegistryProperties, ServerProperties serverProperties, BeanFactory beanFactory) {
         this.microJobConsumerProperties = microJobConsumerProperties;
         this.microJobRegistryProperties = microJobRegistryProperties;
+        this.serverProperties = serverProperties;
         this.beanFactory = beanFactory;
     }
 
@@ -91,13 +97,19 @@ public class MicroJobConsumerAutoConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean
-    public MicroJobConsumerFactoryBean microJobConsumerFactoryBean() {
-        MicroJobConsumerFactoryBean factoryBean = new MicroJobConsumerFactoryBean();
+    public ConsumerFactoryBean consumerFactoryBean() {
+        ConsumerFactoryBean factoryBean = new ConsumerFactoryBean();
+
+        // 设置注册中心配置信息
         factoryBean.setRegistryIpAddress(microJobRegistryProperties.getIpAddress());
-        factoryBean.setRegistryPort(microJobRegistryProperties.getListenPort());
+        factoryBean.setRegistryPort(microJobRegistryProperties.getPort());
+
         factoryBean.setHeartDelaySeconds(microJobConsumerProperties.getHeartDelaySeconds());
-        factoryBean.setListenPort(microJobConsumerProperties.getListenPort());
         factoryBean.setLoadBalanceWeight(microJobConsumerProperties.getLoadBalanceWeight());
+
+        // 设置端口号
+        factoryBean.setListenPort(serverProperties.getPort());
+
         // 使用配置文件配置的路径
         String scanMicroJobPackage = microJobConsumerProperties.getBaseScanMicroJobPackage();
         // 如果并未配置，则使用springboot默认扫描的package
@@ -107,6 +119,7 @@ public class MicroJobConsumerAutoConfiguration {
         factoryBean.setJobScanBasePackage(scanMicroJobPackage);
         return factoryBean;
     }
+
     /**
      * 实例化restTemplate
      * 用于消费者、提供者、调度器、注册中心ws请求交互

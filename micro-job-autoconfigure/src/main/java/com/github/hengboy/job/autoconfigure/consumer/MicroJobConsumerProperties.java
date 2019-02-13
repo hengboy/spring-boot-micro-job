@@ -33,17 +33,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "hengboy.job.consumer")
 public class MicroJobConsumerProperties {
-
-    /**
-     * 任务消费者执行任务监听的端口号
-     * 该端口号用于RPC Server的实例化
-     */
-    private int listenPort = 6000;
-    /**
-     * RPC 执行请求超时时间
-     * 单位：毫秒
-     */
-    private int requestTimeOutMilliSecond = 5000;
     /**
      * 调度器负载的权重
      */

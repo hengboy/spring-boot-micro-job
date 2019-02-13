@@ -37,16 +37,6 @@ import org.springframework.boot.jdbc.DataSourceInitializationMode;
 @ConfigurationProperties(prefix = "hengboy.job.schedule")
 public class MicroJobScheduleProperties {
     /**
-     * 任务调度器监听的端口号
-     * 该端口号用于RPC服务端的实例化
-     */
-    private int listenPort = 7000;
-    /**
-     * RPC 执行请求超时时间
-     * 单位：毫秒
-     */
-    private int requestTimeOutMilliSecond = 5000;
-    /**
      * 调度中心所属命名空间
      */
     private String namespace = "micro-job-default-space";
