@@ -31,6 +31,8 @@
         <micro.registry.version>1.0-SNAPSHOT</micro.registry.version>
         <micro.registry.memory.version>1.0-SNAPSHOT</micro.registry.memory.version>
         <micro.registry.redis.version>1.0-SNAPSHOT</micro.registry.redis.version>
+        <micro.registry.zookeeper.version>1.0-SNAPSHOT</micro.registry.zookeeper.version>
+        <zkclient.version>0.11</zkclient.version>
     </properties>
 
     <dependencyManagement>
@@ -155,6 +157,18 @@
                 <groupId>com.github.hengboy.job</groupId>
                 <artifactId>micro-job-registry-redis</artifactId>
                 <version>${micro.registry.redis.version}</version>
+            </dependency>
+            <!--zkClient-->
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
+            </dependency>
+            <!--micro job zookeeper registry-->
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>micro-job-registry-zookeeper</artifactId>
+                <version>${micro.registry.zookeeper.version}</version>
             </dependency>
 
         </dependencies>

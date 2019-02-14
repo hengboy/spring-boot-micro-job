@@ -18,6 +18,8 @@ package com.github.hengboy.job.autoconfigure.registry;
 
 import com.github.hengboy.job.core.enums.MicroJobRegistryAway;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import static com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties.REGISTRY_PROPERTIES_PREFIX;
@@ -58,4 +60,28 @@ public class MicroJobRegistryProperties {
      * 默认内存方式
      */
     private MicroJobRegistryAway away = MicroJobRegistryAway.MEMORY;
+    /**
+     * zookeeper 相关配置
+     */
+    private ZookeeperProperties zookeeper = new ZookeeperProperties();
+
+    /**
+     * zookeeper属性配置
+     */
+    @Getter
+    @Setter
+    class ZookeeperProperties {
+        /**
+         * zookeeper地址
+         */
+        private String address = "127.0.0.1:2181";
+        /**
+         * 会话超时时间
+         */
+        private int sessionTimeOut = 100000;
+        /**
+         * 连接超时时间
+         */
+        private int connectionTimeOut = 100000;
+    }
 }
