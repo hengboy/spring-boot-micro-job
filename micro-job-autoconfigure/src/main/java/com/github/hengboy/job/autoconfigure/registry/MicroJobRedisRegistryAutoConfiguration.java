@@ -18,7 +18,7 @@ package com.github.hengboy.job.autoconfigure.registry;
 
 import com.github.hengboy.job.registry.http.InstanceRegistry;
 import com.github.hengboy.job.registry.store.RegistryFactoryBean;
-import com.github.hengboy.job.registry.support.memory.MemoryInstanceRegistry;
+import com.github.hengboy.job.registry.support.redis.RedisInstanceRegistry;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -26,26 +26,27 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import static com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties.REGISTRY_PROPERTIES_PREFIX;
 
 /**
- * 内存方式注册中心自动化配置
+ * redis注册方式注册中心自动化配置
  *
  * @author：恒宇少年 - 于起宇
  * <p>
- * DateTime：2019-01-30 09:55
+ * DateTime：2019-02-13 15:08
  * Blog：http://blog.yuqiyu.com
  * WebSite：http://www.jianshu.com/u/092df3f77bca
  * Gitee：https://gitee.com/hengboy
  * GitHub：https://github.com/hengyuboy
  */
 @Configuration
-@ConditionalOnClass({MemoryInstanceRegistry.class, RegistryFactoryBean.class})
+@ConditionalOnClass({RedisInstanceRegistry.class, RegistryFactoryBean.class, RedisTemplate.class})
 @EnableConfigurationProperties(MicroJobRegistryProperties.class)
-@ConditionalOnProperty(prefix = REGISTRY_PROPERTIES_PREFIX, name = "away", havingValue = "MEMORY")
+@ConditionalOnProperty(prefix = REGISTRY_PROPERTIES_PREFIX, name = "away", havingValue = "REDIS")
 @AutoConfigureAfter(MicroJobRegistryAutoConfiguration.class)
-public class MicroJobMemoryRegistryAutoConfiguration {
+public class MicroJobRedisRegistryAutoConfiguration {
     /**
      * 实例注册中心
      *
@@ -54,6 +55,6 @@ public class MicroJobMemoryRegistryAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public InstanceRegistry instanceRegistry() {
-        return new MemoryInstanceRegistry();
+        return new RedisInstanceRegistry();
     }
 }

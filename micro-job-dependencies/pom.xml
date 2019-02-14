@@ -30,6 +30,7 @@
         <micro.consumer.version>1.0-SNAPSHOT</micro.consumer.version>
         <micro.registry.version>1.0-SNAPSHOT</micro.registry.version>
         <micro.registry.memory.version>1.0-SNAPSHOT</micro.registry.memory.version>
+        <micro.registry.redis.version>1.0-SNAPSHOT</micro.registry.redis.version>
     </properties>
 
     <dependencyManagement>
@@ -149,6 +150,13 @@
                 <artifactId>micro-job-registry-memory</artifactId>
                 <version>${micro.registry.memory.version}</version>
             </dependency>
+            <!--micro job redis registry-->
+            <dependency>
+                <groupId>com.github.hengboy.job</groupId>
+                <artifactId>micro-job-registry-redis</artifactId>
+                <version>${micro.registry.redis.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>

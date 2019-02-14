@@ -78,6 +78,18 @@
             <artifactId>micro-job-registry-memory</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--micro job memory registry-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-registry-redis</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
     <!--version dependencies-->
     <dependencyManagement>

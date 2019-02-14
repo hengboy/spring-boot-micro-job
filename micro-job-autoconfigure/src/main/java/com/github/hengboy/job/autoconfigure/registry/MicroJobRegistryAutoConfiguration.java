@@ -46,4 +46,15 @@ public class MicroJobRegistryAutoConfiguration {
     public MicroJobRestTemplate restTemplate() {
         return new MicroJobRestTemplate();
     }
+
+    /**
+     * 任务注册中心工程实体类
+     *
+     * @return
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public RegistryFactoryBean RegistryFactoryBean() {
+        return new RegistryFactoryBean();
+    }
 }
