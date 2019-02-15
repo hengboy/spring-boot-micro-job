@@ -64,6 +64,10 @@ public class MicroJobRegistryProperties {
      * zookeeper 相关配置
      */
     private ZookeeperProperties zookeeper = new ZookeeperProperties();
+    /**
+     * consul 相关配置
+     */
+    private ConsulProperties consul = new ConsulProperties();
 
     /**
      * zookeeper属性配置
@@ -83,5 +87,21 @@ public class MicroJobRegistryProperties {
          * 连接超时时间
          */
         private int connectionTimeOut = 100000;
+    }
+
+    /**
+     * consul 相关属性配置
+     */
+    @Getter
+    @Setter
+    class ConsulProperties {
+        /**
+         * consul 地址
+         */
+        private String address;
+        /**
+         * consul 端口号
+         */
+        private int port;
     }
 }

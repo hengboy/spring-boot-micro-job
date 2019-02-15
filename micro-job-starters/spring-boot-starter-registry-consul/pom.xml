@@ -10,6 +10,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-boot-starter-registry-consul</artifactId>
-
+    <dependencies>
+        <!--micro job starter-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!--consul-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-registry-consul</artifactId>
+        </dependency>
+        <!--consul client-->
+        <dependency>
+            <groupId>com.orbitz.consul</groupId>
+            <artifactId>consul-client</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

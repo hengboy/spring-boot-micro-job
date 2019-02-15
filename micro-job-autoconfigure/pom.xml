@@ -102,6 +102,19 @@
             <artifactId>micro-job-registry-zookeeper</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--consul client-->
+        <dependency>
+            <groupId>com.orbitz.consul</groupId>
+            <artifactId>consul-client</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--micro job consul registry-->
+        <dependency>
+            <groupId>com.github.hengboy.job</groupId>
+            <artifactId>micro-job-registry-consul</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
     <!--version dependencies-->
     <dependencyManagement>
