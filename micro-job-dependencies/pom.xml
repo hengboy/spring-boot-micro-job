@@ -4,35 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>spring-boot-micro-job</artifactId>
-        <groupId>com.github.hengboy.job</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>com.github.hengboy</groupId>
+        <version>0.0.1.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>micro-job-dependencies</artifactId>
 
     <properties>
-        <micro.job.starter.version>0.0.1-SNAPSHOT</micro.job.starter.version>
-        <micro.job.consumer.version>0.0.1-SNAPSHOT</micro.job.consumer.version>
-        <micro.job.provider.version>0.0.1-SNAPSHOT</micro.job.provider.version>
-        <micro.job.schedule.version>0.0.1-SNAPSHOT</micro.job.schedule.version>
-        <micro.job.registry.memory.version>0.0.1-SNAPSHOT</micro.job.registry.memory.version>
-        <micro.job.registry.consul.version>0.0.1-SNAPSHOT</micro.job.registry.consul.version>
-        <micro.job.registry.redis.version>0.0.1-SNAPSHOT</micro.job.registry.redis.version>
-        <micro.job.registry.zookeeper.version>0.0.1-SNAPSHOT</micro.job.registry.zookeeper.version>
+        <micro.job.starter.version>0.0.1.RELEASE</micro.job.starter.version>
+        <micro.job.consumer.version>0.0.1.RELEASE</micro.job.consumer.version>
+        <micro.job.provider.version>0.0.1.RELEASE</micro.job.provider.version>
+        <micro.job.schedule.version>0.0.1.RELEASE</micro.job.schedule.version>
+        <micro.job.registry.memory.version>0.0.1.RELEASE</micro.job.registry.memory.version>
+        <micro.job.registry.consul.version>0.0.1.RELEASE</micro.job.registry.consul.version>
+        <micro.job.registry.redis.version>0.0.1.RELEASE</micro.job.registry.redis.version>
+        <micro.job.registry.zookeeper.version>0.0.1.RELEASE</micro.job.registry.zookeeper.version>
         <quartz.schedule.version>2.3.0</quartz.schedule.version>
         <spring.context.version>5.1.4.RELEASE</spring.context.version>
         <spring.tx.version>5.1.4.RELEASE</spring.tx.version>
         <spring.web.version>5.1.4.RELEASE</spring.web.version>
-        <micro.job.autoconfigure.version>0.0.1-SNAPSHOT</micro.job.autoconfigure.version>
+        <micro.job.autoconfigure.version>0.0.1.RELEASE</micro.job.autoconfigure.version>
         <lombok.version>1.18.4</lombok.version>
-        <micro.schedule.version>1.0-SNAPSHOT</micro.schedule.version>
-        <micro.provider.version>1.0-SNAPSHOT</micro.provider.version>
-        <micro.consumer.version>1.0-SNAPSHOT</micro.consumer.version>
-        <micro.registry.version>1.0-SNAPSHOT</micro.registry.version>
-        <micro.registry.memory.version>1.0-SNAPSHOT</micro.registry.memory.version>
-        <micro.registry.redis.version>1.0-SNAPSHOT</micro.registry.redis.version>
-        <micro.registry.zookeeper.version>1.0-SNAPSHOT</micro.registry.zookeeper.version>
-        <micro.registry.consul.version>1.0-SNAPSHOT</micro.registry.consul.version>
+        <micro.schedule.version>0.0.1.RELEASE</micro.schedule.version>
+        <micro.provider.version>0.0.1.RELEASE</micro.provider.version>
+        <micro.consumer.version>0.0.1.RELEASE</micro.consumer.version>
+        <micro.registry.version>0.0.1.RELEASE</micro.registry.version>
+        <micro.registry.memory.version>0.0.1.RELEASE</micro.registry.memory.version>
+        <micro.registry.redis.version>0.0.1.RELEASE</micro.registry.redis.version>
+        <micro.registry.zookeeper.version>0.0.1.RELEASE</micro.registry.zookeeper.version>
+        <micro.registry.consul.version>0.0.1.RELEASE</micro.registry.consul.version>
         <zkclient.version>0.11</zkclient.version>
         <consul.client.version>1.3.1</consul.client.version>
     </properties>
@@ -41,49 +41,49 @@
         <dependencies>
             <!--starter-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${micro.job.starter.version}</version>
             </dependency>
             <!--任务消费者默认版本依赖-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>spring-boot-starter-consumer</artifactId>
                 <version>${micro.job.consumer.version}</version>
             </dependency>
             <!--任务提供者默认版本依赖-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>spring-boot-starter-provider</artifactId>
                 <version>${micro.job.provider.version}</version>
             </dependency>
             <!--任务调度默认版本依赖-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>spring-boot-starter-schedule</artifactId>
                 <version>${micro.job.schedule.version}</version>
             </dependency>
             <!--注册中心内存方式默认版本依赖-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>spring-boot-starter-registry-memory</artifactId>
                 <version>${micro.job.registry.memory.version}</version>
             </dependency>
             <!--注册中心consul方式默认版本依赖-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>spring-boot-starter-registry-consul</artifactId>
                 <version>${micro.job.registry.consul.version}</version>
             </dependency>
             <!--注册中心redis方式默认版本依赖-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>spring-boot-starter-registry-redis</artifactId>
                 <version>${micro.job.registry.redis.version}</version>
             </dependency>
             <!--注册中心zookeeper方式默认版本依赖-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>spring-boot-starter-registry-zookeeper</artifactId>
                 <version>${micro.job.registry.zookeeper.version}</version>
             </dependency>
@@ -113,7 +113,7 @@
             </dependency>
             <!--autoconfigure-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-autoconfigure</artifactId>
                 <version>${micro.job.autoconfigure.version}</version>
             </dependency>
@@ -126,37 +126,37 @@
 
             <!--micro schedule-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-schedule</artifactId>
                 <version>${micro.schedule.version}</version>
             </dependency>
             <!--micro job provider-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-provider</artifactId>
                 <version>${micro.provider.version}</version>
             </dependency>
             <!--micro job consumer-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-consumer</artifactId>
                 <version>${micro.consumer.version}</version>
             </dependency>
             <!--micro job registry-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-registry</artifactId>
                 <version>${micro.registry.version}</version>
             </dependency>
             <!--micro job memory registry-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-registry-memory</artifactId>
                 <version>${micro.registry.memory.version}</version>
             </dependency>
             <!--micro job redis registry-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-registry-redis</artifactId>
                 <version>${micro.registry.redis.version}</version>
             </dependency>
@@ -168,7 +168,7 @@
             </dependency>
             <!--micro job zookeeper registry-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-registry-zookeeper</artifactId>
                 <version>${micro.registry.zookeeper.version}</version>
             </dependency>
@@ -180,7 +180,7 @@
             </dependency>
             <!--micro job consul registry-->
             <dependency>
-                <groupId>com.github.hengboy.job</groupId>
+                <groupId>com.github.hengboy</groupId>
                 <artifactId>micro-job-registry-consul</artifactId>
                 <version>${micro.registry.consul.version}</version>
             </dependency>

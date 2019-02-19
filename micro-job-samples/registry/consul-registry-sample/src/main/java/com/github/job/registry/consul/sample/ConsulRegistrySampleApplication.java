@@ -14,23 +14,31 @@
  *    limitations under the License.
  */
 
-package com.github.hengboy.job.sample;
+package com.github.job.registry.consul.sample;
 
-import com.github.hengboy.job.autoconfigure.schedule.MicroJobScheduleProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author：恒宇少年 - 于起宇
  * <p>
- * DateTime：2019-01-28 10:49
+ * DateTime：2019-02-15 17:32
  * Blog：http://blog.yuqiyu.com
  * WebSite：http://www.jianshu.com/u/092df3f77bca
  * Gitee：https://gitee.com/hengboy
  * GitHub：https://github.com/hengyuboy
  */
-@RestController
-public class IndexController {
-    @Autowired
-    private MicroJobScheduleProperties microJobScheduleProperties;
+@SpringBootApplication
+public class ConsulRegistrySampleApplication {
+    /**
+     * logger instance
+     */
+    static Logger logger = LoggerFactory.getLogger(ConsulRegistrySampleApplication.class);
+
+    public static void main(String[] args) {
+        SpringApplication.run(ConsulRegistrySampleApplication.class, args);
+        logger.info("「「「「「Consul任务注册中心启动成功.」」」」」");
+    }
 }

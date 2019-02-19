@@ -14,24 +14,33 @@
  *    limitations under the License.
  */
 
-package com.github.hengboy.job.sample;
+package com.github.hengboy.sample.consumer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * job consumer sample
+ *
  * @author：恒宇少年 - 于起宇
  * <p>
- * DateTime：2019-01-28 10:45
+ * DateTime：2019-02-15 17:20
  * Blog：http://blog.yuqiyu.com
  * WebSite：http://www.jianshu.com/u/092df3f77bca
  * Gitee：https://gitee.com/hengboy
  * GitHub：https://github.com/hengyuboy
  */
 @SpringBootApplication
-public class SampleApplication {
+public class ConsumerSampleApplication {
+    /**
+     * logger instance
+     */
+    static Logger logger = LoggerFactory.getLogger(ConsumerSampleApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(SampleApplication.class, args);
+        SpringApplication.run(ConsumerSampleApplication.class, args);
+        logger.info("「「「「「消费者示例启动完成.」」」」」");
     }
 }

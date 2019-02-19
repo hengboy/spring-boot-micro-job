@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>micro-job-starters</artifactId>
-        <groupId>com.github.hengboy.job</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>com.github.hengboy</groupId>
+        <version>0.0.1.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,7 @@
     <dependencies>
         <!--自动化配置依赖-->
         <dependency>
-            <groupId>com.github.hengboy.job</groupId>
+            <groupId>com.github.hengboy</groupId>
             <artifactId>micro-job-autoconfigure</artifactId>
         </dependency>
     </dependencies>
