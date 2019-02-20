@@ -37,10 +37,6 @@ import org.springframework.boot.jdbc.DataSourceInitializationMode;
 @ConfigurationProperties(prefix = "hengboy.job.schedule")
 public class MicroJobScheduleProperties {
     /**
-     * 调度中心所属命名空间
-     */
-    private String namespace = "micro-job-default-space";
-    /**
      * 最大重试次数
      */
     private int maxRetryTimes = 2;
@@ -56,6 +52,10 @@ public class MicroJobScheduleProperties {
      * quartz Config Properties
      */
     private MicroJobScheduleProperties.QuartzConfigProperties quartz;
+    /**
+     * 任务数据源类型，默认使用内存方式
+     */
+    private JobStoreType jobStoreType = JobStoreType.MEMORY;
 
     /**
      * 如果并未自定义配置信息
@@ -69,20 +69,20 @@ public class MicroJobScheduleProperties {
             quartz = new MicroJobScheduleProperties.QuartzConfigProperties();
 
             // 设置任务存储方式为数据库方式
-            quartz.setJobStoreType(JobStoreType.JDBC);
+            quartz.setJobStoreType(jobStoreType);
 
-            // 设置schema初始化模式
-            quartz.getJdbc().setInitializeSchema(DataSourceInitializationMode.EMBEDDED);
-
-            // 设置属性配置
-            quartz.getProperties().put("org.quartz.scheduler.instanceName", "jobScheduler");
-            quartz.getProperties().put("org.quartz.scheduler.instanceId", "AUTO");
-            quartz.getProperties().put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
-            quartz.getProperties().put("org.quartz.jobStore.driverDelegateClass", "org.quartz.impl.jdbcjobstore.StdJDBCDelegate");
-            quartz.getProperties().put("org.quartz.jobStore.tablePrefix", "MICRO_JOB_QRTZ_");
-            quartz.getProperties().put("org.quartz.jobStore.isClustered", "true");
-            quartz.getProperties().put("org.quartz.jobStore.clusterCheckinInterval", "20000");
-            quartz.getProperties().put("org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread", "true");
+            // 数据源方式，设置相关属性
+            if (JobStoreType.JDBC.toString().equals(jobStoreType.toString())) {
+                quartz.getJdbc().setInitializeSchema(DataSourceInitializationMode.EMBEDDED);
+                quartz.getProperties().put("org.quartz.scheduler.instanceName", "jobScheduler");
+                quartz.getProperties().put("org.quartz.scheduler.instanceId", "AUTO");
+                quartz.getProperties().put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
+                quartz.getProperties().put("org.quartz.jobStore.driverDelegateClass", "org.quartz.impl.jdbcjobstore.StdJDBCDelegate");
+                quartz.getProperties().put("org.quartz.jobStore.tablePrefix", "MICRO_JOB_QRTZ_");
+                quartz.getProperties().put("org.quartz.jobStore.isClustered", "true");
+                quartz.getProperties().put("org.quartz.jobStore.clusterCheckinInterval", "20000");
+                quartz.getProperties().put("org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread", "true");
+            }
         }
         return quartz;
     }

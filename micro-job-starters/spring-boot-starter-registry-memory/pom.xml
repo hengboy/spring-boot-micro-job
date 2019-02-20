@@ -5,7 +5,7 @@
     <parent>
         <artifactId>micro-job-starters</artifactId>
         <groupId>com.github.hengboy</groupId>
-        <version>0.0.1.RELEASE</version>
+        <version>0.0.2.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

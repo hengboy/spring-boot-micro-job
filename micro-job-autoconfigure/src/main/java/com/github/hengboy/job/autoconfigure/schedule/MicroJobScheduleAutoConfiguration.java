@@ -19,14 +19,15 @@ package com.github.hengboy.job.autoconfigure.schedule;
 import com.github.hengboy.job.autoconfigure.registry.MicroJobRegistryProperties;
 import com.github.hengboy.job.core.http.MicroJobRestTemplate;
 import com.github.hengboy.job.schedule.ScheduleFactoryBean;
+import com.github.hengboy.job.schedule.store.DefaultJobStore;
 import com.github.hengboy.job.schedule.store.JobStore;
 import com.github.hengboy.job.schedule.store.customizer.JobStoreCustomizer;
-import com.github.hengboy.job.schedule.store.jdbc.JdbcJobStore;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.quartz.JobStoreType;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +49,6 @@ import javax.sql.DataSource;
 @Configuration
 @EnableConfigurationProperties({MicroJobScheduleProperties.class, MicroJobRegistryProperties.class, ServerProperties.class})
 @ConditionalOnClass({Scheduler.class, ScheduleFactoryBean.class})
-@ConditionalOnBean(DataSource.class)
 public class MicroJobScheduleAutoConfiguration {
     /**
      * 调度器属性配置
@@ -81,19 +81,40 @@ public class MicroJobScheduleAutoConfiguration {
     }
 
     /**
-     * 实例化任务数据源对象
-     * 配置使用数据库方式
+     * 数据源自定义配置
      *
-     * @param dataSource 数据源对象
+     * @param dataSource 数据源配置
      * @return
      */
     @Bean
-    JobStore jobStore(DataSource dataSource) {
-        JdbcJobStore jdbcJobStore = new JdbcJobStore();
-        jdbcJobStore.setDataSource(dataSource);
-        // 自定义配置
-        this.customize(jdbcJobStore);
-        return jdbcJobStore;
+    @ConditionalOnBean(DataSource.class)
+    JobStoreCustomizer dataSourceJobStoreCustomizer(DataSource dataSource) {
+        return jobStore -> {
+            DefaultJobStore defaultJobStore = (DefaultJobStore) jobStore;
+            defaultJobStore.setDataSource(dataSource);
+        };
+    }
+
+    /**
+     * 实例化任务数据源对象
+     * 配置使用数据库方式
+     *
+     * @return
+     */
+    @Bean
+    JobStore jobStore() {
+        // 默认任务数据源
+        DefaultJobStore defaultJobStore = new DefaultJobStore();
+
+        // 数据库方式任务数据源
+        if (JobStoreType.JDBC.toString().equals(microJobScheduleProperties.getJobStoreType().toString())) {
+            defaultJobStore.setDelegateClassName("com.github.hengboy.job.schedule.store.delegate.JdbcSqlDelegate");
+        }
+
+        // 如果存在自定义配置类
+        this.customize(defaultJobStore);
+
+        return defaultJobStore;
     }
 
     /**
