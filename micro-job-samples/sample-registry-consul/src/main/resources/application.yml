@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: sample-registry-consul
+# http port
+# micro job registry port
+server:
+  port: 7000
+hengboy:
+  job:
+    # 任务注册中心
+    registry:
+      away: consul
+      # consul配置
+      consul:
+        address: "127.0.0.1"
+        port: 8500
