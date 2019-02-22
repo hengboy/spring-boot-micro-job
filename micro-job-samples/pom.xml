@@ -30,5 +30,6 @@
         <module>sample-schedule</module>
         <module>sample-registry-redis</module>
         <module>sample-registry-zookeeper</module>
+        <module>sample-registry-consul</module>
     </modules>
 </project>
