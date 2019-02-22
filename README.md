@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/hengboy/spring-boot-micro-job.svg?branch=master)](https://travis-ci.org/hengboy/spring-boot-micro-job)(https://travis-ci.org/hengyuboy/spring-boot-starter-micro-job) [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/weibocom/motan/blob/master/LICENSE) [![Maven Central](https://img.shields.io/maven-central/v/com.github.hengboy/spring-boot-starter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.hengboy%22%20AND%20a:%22spring-boot-starter%22) ![](https://img.shields.io/badge/JDK-1.8+-green.svg) ![](https://img.shields.io/badge/springBoot-1.4+_1.5+_2.0+-green.svg) 
 `micro-job`是一款`分布式任务调度执行框架`，内部通过各个组件的`Jersey`共享出的`Rest`路径进行数据访问。
 
 详细开发文档 [访问官网](http://job.yuqiyu.com/#/) 
