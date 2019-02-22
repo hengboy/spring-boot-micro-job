@@ -69,9 +69,9 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-    <build>
+    <!--<build>
         <plugins>
-            <!--jdk version-->
+            &lt;!&ndash;jdk version&ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -80,7 +80,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!-- Source -->
+            &lt;!&ndash; Source &ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -94,7 +94,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Javadoc -->
+            &lt;!&ndash; Javadoc &ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -108,7 +108,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Gpg Signature -->
+            &lt;!&ndash; Gpg Signature &ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -124,5 +124,5 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 </project>
