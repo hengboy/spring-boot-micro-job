@@ -141,7 +141,7 @@ public class TestJob implements MicroJob {
 
 ```yaml
 server:
-	port: 8083
+  port: 8083
 hengboy:
   job:
     registry:
