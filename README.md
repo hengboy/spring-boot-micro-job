@@ -1,24 +1,26 @@
-[![Build Status](https://travis-ci.org/hengboy/spring-boot-micro-job.svg?branch=master)](https://travis-ci.org/hengboy/spring-boot-micro-job)[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/weibocom/motan/blob/master/LICENSE) [![Maven Central](https://img.shields.io/maven-central/v/com.github.hengboy/spring-boot-starter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.hengboy%22%20AND%20a:%22spring-boot-starter%22) ![](https://img.shields.io/badge/JDK-1.8+-green.svg) ![](https://img.shields.io/badge/SpringBoot-1.4+_1.5+_2.0+-green.svg)
+![](http://job.yuqiyu.com/svgs/logo.svg)
 
-`micro-job`是一款`分布式任务调度执行框架`，内部通过各个组件的`Jersey`共享出的`Rest`路径进行数据访问。
+[![Build Status](https://travis-ci.org/hengboy/spring-boot-micro-job.svg?branch=master)](https://travis-ci.org/hengboy/spring-boot-micro-job)[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/weibocom/motan/blob/master/LICENSE) [![Maven Central](https://img.shields.io/maven-central/v/com.github.hengboy/spring-boot-starter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.hengboy%22%20AND%20a:%22spring-boot-starter%22) ![](https://img.shields.io/badge/JDK-1.8+-green.svg) ![](https://img.shields.io/badge/SpringBoot-1.4+_1.5+_2.0+-green.svg) [![](http://job.yuqiyu.com/svgs/chinese.svg)](README_zh.md)
 
-详细开发文档 [访问官网](http://job.yuqiyu.com/#/) 
+`Micro-job` is a distributed task scheduling and execution framework, which accesses data internally through the Rest path shared by `Jersey` of each component.
 
-> 名词解释：
+Detailed development documentation [Visit official website](http://job.yuqiyu.com/#/) 
+
+> Noun interpretation：
 >
-> `consumer` -> `任务消费节点`
+> `consumer` -> `Task Consumption Node`
 >
-> `schedule` -> `任务调度器`
+> `schedule` -> `Task Scheduler`
 >
-> `provider` -> `任务生产者`
+> `provider` -> `Task Producer`
 >
-> `registry` -> `任务注册中心`
+> `registry` -> `Task Registry`
 
-## 任务注册中心（registry）
+## Registry
 
-`registry`是任务注册中心，在整个生态圈内担任着各个组件注册节点的任务，任务注册中心实现方式是多样化的，目前包含：`memory`、`zookeeper`、`redis`、`consul`等。
+` Regisry `serves as the task of registering nodes of each component in the whole ecosystem. The way to implement the task registry is diversified. At present, it includes `memory', `zookeeper', `redis', `consul', etc.
 
-通过`idea、eclipse`工具创建`SpringBoot`项目并添加如下依赖到`pom.xml`文件内。
+Create the `SpringBoot'project through idea and eclipse tools and add the following dependencies to the `pom.xml' file.
 
 ```
 <dependency>
@@ -28,7 +30,7 @@
 </dependency>
 ```
 
-在`resources`资源目录下添加`application.yml`配置文件，配置内容如下所示：
+Add the `application.yml'configuration file to the `resources' resource directory as follows:
 
 ```yaml
 server:
@@ -36,19 +38,17 @@ server:
 hengboy:
   job:
     registry:
-      # 任务注册中心节点注册方式
+      # ask Registry Node Registration
       away: memory
 ```
 
 
 
-## 任务调度器（schedule）
+## Schedule
 
-`schedule`是任务调度器，每一个任务的创建都是通过调度器进行分配执行，分配过程中根据消费节点的负载均衡策略配置进行不同消费者节点任务消费。
-
-在生产任务时，也会根据调度器的`负载均衡策略`来进行筛选执行任务调度的`调度器节点`。
-
-通过`idea、eclipse`工具创建`SpringBoot`项目并添加如下依赖到`pom.xml`文件内。
+Each task is created through a dispatcher to allocate and execute. In the process of allocation, different tasks are consumed by different consumer nodes according to the load balancing strategy configuration of the consumer nodes.
+In production tasks, the `scheduler nodes'that perform task scheduling are also filtered according to the `load balancing strategy' of the scheduler.
+Create `SpringBoot'project through `idea' and `eclipse'tools and add the following dependencies to the `pom.xml' file.
 
 ```xml
 <dependency>
@@ -58,7 +58,7 @@ hengboy:
 </dependency>
 ```
 
-在`resources`资源目录下添加`application.yml`配置文件，配置内容如下所示：
+Add the `application.yml'configuration file to the `resources' resource directory as follows:
 
 ```yaml
 server:
@@ -66,20 +66,19 @@ server:
 hengboy:
   job:
     registry:
-      # 保持与任务注册中心节点注册方式一致即可
+      # Maintain consistency with task registry node registration
       away: memory
     schedule:
-      # 内存方式调度器处理任务队列以及任务日志的存储
+      # Memory Scheduler handles task queues and storage of task logs
       job-store-type: memory  
 ```
 
 
 
-## 任务消费节点（consumer）
+## Consumer
 
-`consumer`是任务消费者执行节点，任务由`consumer`进行定义以及上报，当`schedule`调用消费者执行任务请求时，会自动根据`jobKey`来执行对应的任务逻辑方法。
-
-通过`idea、eclipse`工具创建`SpringBoot`项目并添加如下依赖到`pom.xml`文件内。
+Tasks are defined and reported by `consumer'. When `schedule'invokes a consumer to execute a task request, the corresponding task logic method is automatically executed according to `jobKey'.
+Create `SpringBoot'project through `idea' and `eclipse'tools and add the following dependencies to the `pom.xml' file.
 
 ```xml
 <dependency>
@@ -89,7 +88,7 @@ hengboy:
 </dependency>
 ```
 
-在`resources`资源目录下添加`application.yml`配置文件，配置内容如下所示：
+Add the `application.yml'configuration file to the `resources' resource directory as follows:
 
 ```yaml
 server:
@@ -97,13 +96,13 @@ server:
 hengboy:
   job:
     registry:
-      # 保持与任务注册中心节点注册方式一致即可
+      # Maintain consistency with task registry node registration
       away: memory
 ```
 
-### 任务定义示例
+### Example Of JOB Definition
 
-我们来定义一个简单的`Job`，示例如下所示：
+Let's define a simple `Job', as follows:
 
 ```j
 @Job(jobExecuteAway = JobExecuteAwayEnum.ONCE)
@@ -115,21 +114,20 @@ public class TestJob implements MicroJob {
 
     @Override
     public JobExecuteResult execute(JobExecuteParam jobExecuteParam) throws JobException {
-        logger.info("执行Key：{}，执行参数：{}", jobExecuteParam.getJobKey(), jobExecuteParam.getJsonParam());
+        logger.info("Key：{}，Param：{}", jobExecuteParam.getJobKey(), jobExecuteParam.getJsonParam());
         return JobExecuteResult.JOB_EXECUTE_SUCCESS;
     }
 }
 ```
 
-> 在上面定义的`Job`对应的`JobKey`为`testJob`.
+> The `Job', as defined above, corresponds to `JobKey', which is `testJob'.
 
 
 
-## 任务生产节点（provider）
+## Provider
 
-`provider`是任务生产节点，由业务方进行添加依赖并执行`MicroJobProvider.newXxxJob`调用创建任务，如：`创建订单后`执行`发送邮件`通知操作。
-
-通过`idea、eclipse`工具创建`SpringBoot`项目并添加如下依赖到`pom.xml`文件内。
+The business side adds dependencies and performs `MicroJobProvider. newXxxJob'call creation tasks, such as `Send mail' notification operation after creating an order'.
+Create `SpringBoot'project through `idea' and `eclipse'tools and add the following dependencies to the `pom.xml' file.
 
 ```xml
 <dependency>
@@ -139,7 +137,7 @@ public class TestJob implements MicroJob {
 </dependency>
 ```
 
-在`resources`资源目录下添加`application.yml`配置文件，配置内容如下所示：
+Add the `application.yml'configuration file to the `resources' resource directory as follows:
 
 ```yaml
 server:
@@ -147,31 +145,31 @@ server:
 hengboy:
   job:
     registry:
-      # 保持与任务注册中心节点注册方式一致即可
+      # Maintain consistency with task registry node registration
       away: memory
 ```
 
-### 任务执行示例
+### JOB Execution Example
 
 ```java
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProviderTester {
     /**
-     * 注册任务提供者
+     * Registered Task Provider
      */
     @Autowired
     private MicroJobProvider microJobProvider;
 
     @Test
     public void newJob() {
-        // 创建的任务仅执行一次
+        // Created tasks are executed only once
         microJobProvider.newOnceJob(OnceJobWrapper.Context()
-                // 对应consumer内定义任务的jobKey，默认为类名首字母小写
+                // JobKey, which corresponds to tasks defined in consumer, defaults to lowercase class names
                 .jobKey("testJob")
-                // 自定义的任务队列key，可以准确定位任务并操作暂停、删除等操作
+                // Customized task queue key, can accurately locate tasks and operate pause, delete and other operations
                 .jobQueueKey(UUID.randomUUID().toString())
-                // 参数，任意类型参数，consumer消费时会转换为json字符串
+                // Parameters, parameters of any type, when consumer consumes, are converted to JSON strings
                 .param(new HashMap() {
                     {
                         put("name", "admin");
@@ -184,12 +182,12 @@ public class ProviderTester {
 
 
 
-## 测试流程
+## Test flow
 
-> 1. 启动任务注册中心
-> 2. 启动任务调度中心
-> 3. 启动任务消费者节点
-> 4. 执行ProviderTester#newJob单元测试方法
+> 1. Start Task Registry
+> 2. Start Task Scheduling Center
+> 3. Start Task Consumer Node
+> 4. Execute the Provider Tester # newJob unit test method
 
 ## Folders
 
