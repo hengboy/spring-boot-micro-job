@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/hengboy/spring-boot-micro-job.svg?branch=master)](https://travis-ci.org/hengboy/spring-boot-micro-job)[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/weibocom/motan/blob/master/LICENSE) [![Maven Central](https://img.shields.io/maven-central/v/com.github.hengboy/spring-boot-starter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.hengboy%22%20AND%20a:%22spring-boot-starter%22) ![](https://img.shields.io/badge/JDK-1.8+-green.svg) ![](https://img.shields.io/badge/SpringBoot-1.4+_1.5+_2.0+-green.svg)
- 
+
 `micro-job`是一款`分布式任务调度执行框架`，内部通过各个组件的`Jersey`共享出的`Rest`路径进行数据访问。
 
 详细开发文档 [访问官网](http://job.yuqiyu.com/#/) 
@@ -191,3 +191,39 @@ public class ProviderTester {
 > 3. 启动任务消费者节点
 > 4. 执行ProviderTester#newJob单元测试方法
 
+## Folders
+
+```
+​```
+.
+├── micro-job-autoconfigure
+├── micro-job-dependencies
+├── micro-job-samples
+│   ├── sample-consumer
+│   ├── sample-provider
+│   ├── sample-registry-consul
+│   ├── sample-registry-memory
+│   ├── sample-registry-redis
+│   ├── sample-registry-zookeeper
+│   ├── sample-schedule
+│   ├── pom.xml
+│   └── README.md
+├── micro-job-starters
+│   ├── spring-boot-starter
+│   ├── spring-boot-starter-provider
+│   ├── spring-boot-starter-registry-consul
+│   ├── spring-boot-starter-registry-memory
+│   ├── spring-boot-starter-registry-redis
+│   ├── spring-boot-starter-registry-zookeeper
+│   ├── spring-boot-starter-schedule
+│   └── pom.xml
+├── .travis.yml
+├── LICENSE
+├── pom.xml
+└── README.md
+​```
+```
+
+## License
+
+The Apache License
