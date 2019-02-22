@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: sample-registry-zookeeper
+hengboy:
+  job:
+    # 任务注册中心
+    registry:
+      away: zookeeper
+      # zookeeper配置信息
+      zookeeper:
+        address: "127.0.0.1:2181"
+# http port
+# micro job registry port
+server:
+  port: 7000

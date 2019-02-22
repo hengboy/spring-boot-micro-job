@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: sample-registry-redis
+  # redis相关配置
+  redis:
+    host: xxx.xxx.xxx.xx
+    password: xxxxx
+# http port
+# micro job registry port
+server:
+  port: 7000
+
+hengboy:
+  job:
+    # 任务注册中心
+    registry:
+      away: redis

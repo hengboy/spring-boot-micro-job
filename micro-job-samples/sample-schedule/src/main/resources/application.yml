@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: sample-schedule
+# http port
+server:
+  port: 11000
+hengboy:
+  job:
+    registry:
+      port: 7000
+      # ip地址，默认：127.0.0.1
+      # ip-address: 127.0.0.1
+      # 任务注册中心方式，默认memory
+      # away: memory
+    schedule:
+      job-store-type: memory

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: sample-registry-memory
+# http port
+# micro job registry port
+server:
+  port: 7000
+hengboy:
+  job:
+    # 任务注册中心
+    registry:
+      # 内存方式
+      away: memory

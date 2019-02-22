@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: sample-consumer
+# http port
+server:
+  port: 10000
+hengboy:
+  job:
+    # 任务注册中心
+    registry:
+      port: 7000
+      # ip地址，默认：127.0.0.1
+      # ip-address: 127.0.0.1
+      # 任务注册中心方式，默认memory
+      # away: memory

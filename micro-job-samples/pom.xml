@@ -11,26 +11,6 @@
 
     <artifactId>micro-job-samples</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>registry</module>
-        <module>consumer</module>
-    </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.10</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -43,4 +23,12 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>sample-provider</module>
+        <module>sample-registry-memory</module>
+        <module>sample-consumer</module>
+        <module>sample-schedule</module>
+        <module>sample-registry-redis</module>
+        <module>sample-registry-zookeeper</module>
+    </modules>
 </project>
