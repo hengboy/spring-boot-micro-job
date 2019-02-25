@@ -6,6 +6,7 @@
 
 详细开发文档 [访问官网](http://job.yuqiyu.com/#/) 
 
+![](http://job.yuqiyu.com/resource/image/MicroJob%20%E4%BA%A4%E6%B5%81%E2%91%A0%E7%BE%A4%E7%BE%A4%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
 > 名词解释：
 >
 > `consumer` -> `任务消费节点`
