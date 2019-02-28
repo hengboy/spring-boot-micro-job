@@ -5,7 +5,7 @@
     <parent>
         <artifactId>spring-boot-micro-job</artifactId>
         <groupId>com.github.hengboy</groupId>
-        <version>0.0.2.RELEASE</version>
+        <version>0.0.3.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <description>
@@ -114,6 +114,31 @@
             <artifactId>micro-job-registry-consul</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!--nacos registry-->
+        <dependency>
+            <groupId>com.github.hengboy</groupId>
+            <artifactId>micro-job-registry-nacos</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--nacos discovery starter-->
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+            <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.alibaba.nacos</groupId>
+                    <artifactId>nacos-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>0.8.2</version>
+        </dependency>
+
 
     </dependencies>
     <!--version dependencies-->

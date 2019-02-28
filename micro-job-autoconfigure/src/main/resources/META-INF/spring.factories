@@ -8,4 +8,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.github.hengboy.job.autoconfigure.registry.MicroJobRedisRegistryAutoConfiguration,\
   com.github.hengboy.job.autoconfigure.registry.MicroJobZookeeperRegistryAutoConfiguration,\
   com.github.hengboy.job.autoconfigure.registry.MicroJobConsulRegistryAutoConfiguration,\
+  com.github.hengboy.job.autoconfigure.registry.MicroJobNacosRegistryAutoConfiguration,\
   com.github.hengboy.job.autoconfigure.consumer.MicroJobConsumerAutoConfiguration

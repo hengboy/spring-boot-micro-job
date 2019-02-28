@@ -5,34 +5,36 @@
     <parent>
         <artifactId>spring-boot-micro-job</artifactId>
         <groupId>com.github.hengboy</groupId>
-        <version>0.0.2.RELEASE</version>
+        <version>0.0.3.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>micro-job-dependencies</artifactId>
 
     <properties>
-        <micro.job.starter.version>0.0.2.RELEASE</micro.job.starter.version>
-        <micro.job.consumer.version>0.0.2.RELEASE</micro.job.consumer.version>
-        <micro.job.provider.version>0.0.2.RELEASE</micro.job.provider.version>
-        <micro.job.schedule.version>0.0.2.RELEASE</micro.job.schedule.version>
-        <micro.job.registry.memory.version>0.0.2.RELEASE</micro.job.registry.memory.version>
-        <micro.job.registry.consul.version>0.0.2.RELEASE</micro.job.registry.consul.version>
-        <micro.job.registry.redis.version>0.0.2.RELEASE</micro.job.registry.redis.version>
-        <micro.job.registry.zookeeper.version>0.0.2.RELEASE</micro.job.registry.zookeeper.version>
+        <micro.job.starter.version>0.0.3.RELEASE</micro.job.starter.version>
+        <micro.job.consumer.version>0.0.3.RELEASE</micro.job.consumer.version>
+        <micro.job.provider.version>0.0.3.RELEASE</micro.job.provider.version>
+        <micro.job.schedule.version>0.0.3.RELEASE</micro.job.schedule.version>
+        <micro.job.registry.memory.version>0.0.3.RELEASE</micro.job.registry.memory.version>
+        <micro.job.registry.consul.version>0.0.3.RELEASE</micro.job.registry.consul.version>
+        <micro.job.registry.redis.version>0.0.3.RELEASE</micro.job.registry.redis.version>
+        <micro.job.registry.zookeeper.version>0.0.3.RELEASE</micro.job.registry.zookeeper.version>
         <quartz.schedule.version>2.3.0</quartz.schedule.version>
         <spring.context.version>5.1.4.RELEASE</spring.context.version>
         <spring.tx.version>5.1.4.RELEASE</spring.tx.version>
         <spring.web.version>5.1.4.RELEASE</spring.web.version>
-        <micro.job.autoconfigure.version>0.0.2.RELEASE</micro.job.autoconfigure.version>
+        <micro.job.autoconfigure.version>0.0.3.RELEASE</micro.job.autoconfigure.version>
         <lombok.version>1.18.4</lombok.version>
-        <micro.schedule.version>0.0.2.RELEASE</micro.schedule.version>
-        <micro.provider.version>0.0.2.RELEASE</micro.provider.version>
-        <micro.consumer.version>0.0.2.RELEASE</micro.consumer.version>
-        <micro.registry.version>0.0.2.RELEASE</micro.registry.version>
-        <micro.registry.memory.version>0.0.2.RELEASE</micro.registry.memory.version>
-        <micro.registry.redis.version>0.0.2.RELEASE</micro.registry.redis.version>
-        <micro.registry.zookeeper.version>0.0.2.RELEASE</micro.registry.zookeeper.version>
-        <micro.registry.consul.version>0.0.2.RELEASE</micro.registry.consul.version>
+        <micro.schedule.version>0.0.3.RELEASE</micro.schedule.version>
+        <micro.provider.version>0.0.3.RELEASE</micro.provider.version>
+        <micro.consumer.version>0.0.3.RELEASE</micro.consumer.version>
+        <micro.registry.version>0.0.3.RELEASE</micro.registry.version>
+        <micro.registry.memory.version>0.0.3.RELEASE</micro.registry.memory.version>
+        <micro.registry.redis.version>0.0.3.RELEASE</micro.registry.redis.version>
+        <micro.registry.zookeeper.version>0.0.3.RELEASE</micro.registry.zookeeper.version>
+        <micro.registry.consul.version>0.0.3.RELEASE</micro.registry.consul.version>
+        <micro.registry.nacos.version>0.0.3.RELEASE</micro.registry.nacos.version>
+        <nacos.discovery.spring.boot.version>0.2.1</nacos.discovery.spring.boot.version>
         <zkclient.version>0.11</zkclient.version>
         <consul.client.version>1.3.1</consul.client.version>
     </properties>
@@ -184,7 +186,17 @@
                 <artifactId>micro-job-registry-consul</artifactId>
                 <version>${micro.registry.consul.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.github.hengboy</groupId>
+                <artifactId>micro-job-registry-nacos</artifactId>
+                <version>${micro.registry.nacos.version}</version>
+            </dependency>
+            <!--nacos discovery starter-->
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+                <version>${nacos.discovery.spring.boot.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
